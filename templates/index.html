@@ -14,7 +14,21 @@
         .login-btn { background: #0079d3; color: #fff; border: none; font-weight: bold; }
         .form-group { margin-bottom: 16px; }
         label { display: block; margin-bottom: 4px; font-size: 14px; }
-        input { width: 100%; padding: 10px; border: 1px solid #dadce0; border-radius: 5px; font-size: 14px; }
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 0 8px;
+            box-sizing: border-box;
+        }
         .forgot { text-align: right; margin-bottom: 16px; }
         .signup { text-align: center; margin-top: 16px; font-size: 14px; }
     </style>
@@ -35,11 +49,15 @@
             {{ form.hidden_tag() }}
             <div class="form-group">
                 <label for="username">Email or username</label>
-                <input type="text" id="username" name="username" autocomplete="username" required>
+                <div class="input-container">
+                        {{ form.username(size=32) }}
+                </div>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" autocomplete="current-password" required>
+                    <div class="input-container">
+                        {{ form.password(size=32) }}
+                    </div>
             </div>
             <div class="forgot">
                 <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
