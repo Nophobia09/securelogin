@@ -52,19 +52,24 @@ def forgot_password():
     return render_template('forgotPass.html', form=form)
 
 @app.route('/reset_password', methods=['GET', 'POST'])
+@csrf.exempt
 @limiter.limit("5 per minute")
 def reset_password():
     username = request.args.get('username')
     token = request.args.get('token')
     user = User.query.filter_by(username=username, reset_token=token).first()
     form = RegistrationForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        new_password = form.password.data
-        password_hash = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
-        user.password_hash = password_hash.decode('utf-8')
-        db.session.commit()
-        flash("Password has been reset! You may now log in.", "success")
-        return redirect(url_for('login'))
+    if request.method == 'POST':
+        password = request.form.get('password')
+        reenter_password = request.form.get('reenter_password')
+        if password and reenter_password and password == reenter_password:
+            password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            user.password_hash = password_hash.decode('utf-8')
+            db.session.commit()
+            flash("Password has been reset! You may now log in.", "success")
+            return redirect(url_for('login'))
+        else:
+            flash("Passwords do not match or are empty.", "error")
     return render_template('reset_password.html', form=form, username=username, token=token)
 
 @app.route('/register', methods=['POST'])
@@ -149,4 +154,4 @@ def privacy_policy():
     return render_template('privacy-policy.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000) #debug=true for development if needed
+    app.run(host='0.0.0.0', port=5000) #debug=True for development if needed
