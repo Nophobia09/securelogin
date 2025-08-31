@@ -65,9 +65,11 @@ def reset_password():
         if password and reenter_password and password == reenter_password:
             password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
             user.password_hash = password_hash.decode('utf-8')
+            new_token = secrets.token_hex(16)
+            user.reset_token = new_token
             db.session.commit()
-            flash("Password has been reset! You may now log in.", "success")
-            return redirect(url_for('login'))
+            flash("Password has been reset! Here is your new reset token.", "success")
+            return redirect(url_for('show_token', token=new_token))
         else:
             flash("Passwords do not match or are empty.", "error")
     return render_template('reset_password.html', form=form, username=username, token=token)
