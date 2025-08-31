@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecureStart - Home</title>
+  <style>
+    body{font-family:Arial, sans-serif;margin:0;background:#f0f4f8;color:#333}
+    header{background:#2c3e50;color:#fff;padding:24px 16px;text-align:center}
+    header h1{margin:0 0 6px 0}
+    main{padding:32px 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+    .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:22px}
+    .card h2{margin-top:0;color:#2c3e50}
+    .btn{display:inline-block;margin:6px 6px 0 0;padding:10px 16px;border:none;border-radius:8px;background:#3498db;color:#fff;cursor:pointer;transition:background .2s}
+    .btn:hover{background:#2980b9}
+    .muted{color:#777;font-size:.95em}
+    footer{text-align:center;margin:30px 0;color:#777;font-size:.9em}
+    .pill{display:inline-block;background:#eaf4ff;border-radius:999px;padding:6px 10px;font-size:.85em}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome, {{ username or "Adventurer" }}</h1>
+    <p class="muted">Congrats!! You’re officially logged in. Your session cookie is behaving. Probably.</p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card">
+        <h2>Navigation</h2>
+        <p class="muted">Quick jumps to the Important Stuff™</p>
+        <button class="btn" onclick="location.href='/privacy-policy'">Privacy Policy</button>
+        <button class="btn" onclick="location.href='/user-agreement'">User Agreement</button>
+        <button class="btn" onclick="location.href='/logout'">Logout</button>
+      </div>
+
+      <div class="card" id="fun-card">
+        <h2>Today’s Fun Fact</h2>
+        <p id="fun-fact">Loading…</p>
+        <button class="btn" onclick="shuffleFact()">Another fact</button>
+      </div>
+
+      <div class="card" id="fortune-card">
+        <h2>Your Fortune</h2>
+        <p id="fortune">Loading…</p>
+        <button class="btn" onclick="shuffleFortune()">Another fortune</button>
+      </div>
+
+      <div class="card">
+        <h2>Security Vibes</h2>
+        <p>Status: <span class="pill">Ultra Secure (probably)</span></p>
+        <p>Notifications: <strong>0</strong> — because we haven’t coded them yet.</p>
+        <p>Session Health: “Looks good” — said every bug moments before production.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 SecureStart — Built with too much ☕ and not enough sleep.
+  </footer>
+
+  <script>
+    // Rotating content pools
+    const FUN_FACTS = [
+      "The cloud is just someone else’s computer.",
+      "90% of coding is fixing bugs you created in the other 10%.",
+      "‘Works on my machine’ is not a valid deployment strategy.",
+      "There are two hard things in CS: cache invalidation, naming things, and off-by-one errors.",
+      "Dark mode saves eyes. Light mode finds bugs.",
+      "A computer once beat me at chess, but it was no match for me at kickboxing.",
+      "Semicolons: tiny characters, big emotions.",
+      "CAPTCHA is just the internet’s way of asking: ‘Are you *really* human?’",
+      "Tabs vs spaces: the original infinite loop.",
+      "If it compiles, ship it. (Just kidding. Please don’t.)"
+    ];
+
+    const FORTUNES = [
+      "You will finally squash that bug… and discover three more.",
+      "A wild merge conflict appears. You use ‘Patience’. It’s super effective.",
+      "Your tests will pass on the first try. (We believe in miracles.)",
+      "Today you push to the right branch. Probably.",
+      "The logs will reveal the truth. Eventually.",
+      "A rubber duck shall grant you clarity.",
+      "Your future includes clean commits and descriptive messages.",
+      "You will resist force-pushing to main. 🧘",
+      "Linters will smile upon your code today.",
+      "You will rename `final_final_v2.py` to something sensible."
+    ];
+
+    function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function shuffleFact(){
+      document.getElementById('fun-fact').textContent = pick(FUN_FACTS);
+    }
+    function shuffleFortune(){
+      document.getElementById('fortune').textContent = pick(FORTUNES);
+    }
+
+    // Initialize on load
+    shuffleFact();
+    shuffleFortune();
+  </script>
+</body>
+</html>
