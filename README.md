@@ -17,11 +17,12 @@ SecureLogin is a Python-based web application designed to provide secure user au
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/Nophobia09/securelogin.git
 cd securelogin
 ```
 
 ### 2. Create a Virtual Environment (Recommended)
+#### Simply run the .bat for windows or .sh for linux or follow the below isntructions
 #### On Windows
 ```bash
 python -m venv venv
@@ -32,7 +33,6 @@ venv\Scripts\activate
 python3 -m venv venv
 source venv/bin/activate
 ```
-
 ### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
@@ -53,7 +53,7 @@ python3 app.py
 - Register a new user and log in.
 
 ## Troubleshooting
-- If you see import errors in VS Code, ensure you have activated your virtual environment and selected the correct Python interpreter.
+- If you see import errors in VS Code, ensure you have activated your virtual environment and selected the correct Python interpreter. 
 - Make sure all dependencies are installed.
 
 ## License
