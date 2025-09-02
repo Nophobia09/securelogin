@@ -21,39 +21,20 @@ git clone https://github.com/Nophobia09/securelogin.git
 cd securelogin
 ```
 
-### 2. Create a Virtual Environment (Recommended)
-#### Simply run the .bat for windows or .sh for linux or follow the below isntructions
-#### On Windows
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-#### On Linux
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+### 2. Windows 
+  Run the windows/app.exe - This will use the compiled venv with dependencies already installed. 
+  or run the windows.bat which will do everything for you as well. 
+  
 
-### 4. Run the Application
-#### On Windows
-```bash
-python app.py
-```
-#### On Linux
-```bash
-python3 app.py
-```
+### 2. Linux
+  Just run the setup.sh - This will use the venv, ensure dependencies are installed, and start the program. 
 
 ## Usage
-- Open your browser and navigate to the address shown in the terminal (usually http://127.0.0.1:5000/ or similar).
+- Open your browser and navigate to the address shown in the terminal (usually http://127.0.0.1:5000/ unless you change something).
 - Register a new user and log in.
 
 ## Troubleshooting
-- If you see import errors in VS Code, ensure you have activated your virtual environment and selected the correct Python interpreter. 
+- If you see import errors in VS Code, ensure you have activated your virtual environment and selected the correct Python interpreter. (This will not happen unless you are trying to modify this in vscode. 
 - Make sure all dependencies are installed.
 
 ## License
