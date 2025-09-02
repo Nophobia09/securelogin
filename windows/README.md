@@ -1,0 +1,60 @@
+# SecureLogin
+
+SecureLogin is a Python-based web application designed to provide secure user authentication and login functionality. It uses modern security practices and is intended for educational and practical use cases.
+
+## Features
+- Secure user registration and login
+- Password hashing
+- Session management
+- Cross-platform support (Windows & Linux)
+
+## Requirements
+- Python 3.7+
+- pip (Python package manager)
+- (Optional) Virtual environment (venv or conda)
+
+## Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Nophobia09/securelogin.git
+cd securelogin
+```
+
+### 2. Create a Virtual Environment (Recommended)
+#### Simply run the .bat for windows or .sh for linux or follow the below isntructions
+#### On Windows
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+#### On Linux
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the Application
+#### On Windows
+```bash
+python app.py
+```
+#### On Linux
+```bash
+python3 app.py
+```
+
+## Usage
+- Open your browser and navigate to the address shown in the terminal (usually http://127.0.0.1:5000/ or similar).
+- Register a new user and log in.
+
+## Troubleshooting
+- If you see import errors in VS Code, ensure you have activated your virtual environment and selected the correct Python interpreter. 
+- Make sure all dependencies are installed.
+
+## License
+This project is for educational purposes. See LICENSE for details.

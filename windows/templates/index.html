@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: sans-serif; background: #272727; margin: 0; }
+        .modal { max-width: 400px; margin: 40px auto; background: #c2c0c0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 32px 24px; }
+        h1 { text-align: center; margin-top: 0; margin-bottom: 16px; font-size: 24px; font-weight: bold; }
+        p { text-align: center; font-size: 14px; margin: 16px 0; }
+        a { color: #0079d3; text-decoration: none; }
+        .login-btn { width: 100%; height: 40px; margin-bottom: 12px; border-radius: 5px; border: 1px solid #dadce0; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; }
+        .login-btn { background: #0079d3; color: #fff; border: none; font-weight: bold; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 4px; font-size: 14px; }
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 0 8px;
+            box-sizing: border-box;
+        }
+        .forgot { text-align: right; margin-bottom: 16px; }
+        .signup { text-align: center; margin-top: 16px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="modal">
+        <h1>SecureStart</h1>
+        <p style="text-align:center; font-size:14px; margin-top:-8px; margin-bottom:20px;">
+            Secure coding begins with secure entry.
+        </p>
+        <p style="text-align:center; font-size:11px; margin:12px 0;">
+            By continuing, you agree to our
+            <a href="{{ url_for('user_agreement') }}" target="_blank">User Agreement</a>
+            and acknowledge that you understand the
+            <a href="{{ url_for('privacy_policy') }}" target="_blank">Privacy Policy</a>.
+        </p>
+        <form method="POST" action="{{ url_for('login_post') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="username">Email or username</label>
+                <div class="input-container">
+                        {{ form.username(size=32) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                    <div class="input-container">
+                        {{ form.password(size=32) }}
+                    </div>
+            </div>
+            <div class="forgot">
+                <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+            </div>
+            <button class="login-btn" type="submit">Log In</button>
+        </form>
+        <div class="signup">
+            New to SecureStart?
+            <a href="{{ url_for('signup_page') }}">Sign Up</a>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
