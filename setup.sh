@@ -4,7 +4,7 @@
 source venv/bin/activate
 
 # Set SECRET_KEY environment variable
-export SECRET_KEY='46bf2e844a0462f3dbec446dacbe7645eff785cb53f096ef92c3a9e064598e22'
+export SECRET_KEY=$(python3 -c "import secrets; print(secrets.token_hex(32))")
 
 # Install dependencies (in case they're missing)
 pip install flask flask_sqlalchemy bcrypt flask-wtf flask-limiter
